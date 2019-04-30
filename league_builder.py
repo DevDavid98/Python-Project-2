@@ -137,68 +137,44 @@ def player_info():
     with open('soccer_players.csv', 'r') as csvfile:
         csv_file = csv.reader(csvfile)
         for line in csv_file:
-            print(line)
+            print(', '.join(line))
 
 
 def team_file():
-    with open('teams.txt', 'w') as txtfile:
-        team_names = csv.writer(txtfile)
-        fieldnames = ['Name', 'Soccer Experience', 'Gaurdian Name(s)']
-        writer = csv.DictWriter(txtfile, fieldnames=fieldnames)
-
-        team_names.writerow(['Sharks'])
-        writer.writerow({'Name': 'Joe Smith', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Jim and Jan Smith'})
-        writer.writerow({'Name': 'Jill Tanner', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Clara Tanner'})
-        writer.writerow({'Name': 'Bill Bon', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Sara and Jenny Bon'})
-
-        writer.writerow({'Name': 'Eva Gordan', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Wendy and Mike Gordon'})
-        writer.writerow({'Name': 'Matt Gill', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Charles and Sylvia Gill'})
-        writer.writerow({'Name': 'Kimmy Stein', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Bill and Hillary Stein'})
-
-        team_names.writerow([])
-
-        team_names.writerow(['Dragons'])
-        writer.writerow({'Name': 'Sammy Adams', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Jeff Adams'})
-        writer.writerow({'Name': 'Karl Saygan', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Heather Bledsoe'})
-        writer.writerow({'Name': 'Suzane Greenberg',
-                         'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Henrietta Dumas'})
-
-        writer.writerow({'Name': 'Sal Dali', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Gala Dali'})
-        writer.writerow({'Name': 'Joe Kavalier', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Sam and Elaine Kavalier'})
-        writer.writerow({'Name': 'Diego Soto', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Robin and Sarika Soto'})
-
-        team_names.writerow([])
-
-        team_names.writerow(['Raptors'])
-        writer.writerow({'Name': 'Ben Finkelstein',
-                         'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Aaron and Jill Finkelstein'})
-        writer.writerow({'Name': 'Chloe Alaska', 'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'David and Jamie Alaska'})
-        writer.writerow({'Name': 'Arnold Willis',
-                         'Soccer Experience': 'NO',
-                         'Gaurdian Name(s)': 'Claire Willis'})
-
-        writer.writerow({'Name': 'Philip Helm', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Thomas Helm and Eva Jones'})
-        writer.writerow({'Name': 'Les Clay', 'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)': 'Wynonna Brown'})
-        writer.writerow({'Name': 'Herschel Krustofski',
-                         'Soccer Experience': 'YES',
-                         'Gaurdian Name(s)':
-                         'Hyman and Rachel Krustofski'})
+    
+    sharks = [
+    ['Sharks'],
+    ['Joe Smith', 'YES', 'Jim and Jan Smith'],
+    ['Jill Tanner', 'YES', 'Clara Tanner'],
+    ['Bill Bon', 'YES', 'Sara and Jenny Bon'],
+    ['Eva Gordan', 'NO', 'Wendy and Mike Gordon'],
+    ['Matt Gill', 'NO', 'Charles and Sylvia Gill'],
+    ['Kimmy Stein','NO', 'Bill and Hillary Stein'],
+    ]
+    dragons = [
+    ['Dragons'],
+    ['Sammy Adams', 'NO', 'Jeff Adams'],
+    ['Karl Saygan', 'YES', 'Heather Bledsoe'],
+    ['Suzane Greenberg', 'YES', 'Henrietta Dumas'],
+    ['Sal Dali', 'NO', 'Gala Dali'],
+    ['Joe Kavalier', 'NO', 'Sam and Elaine Kavalier'],
+    ['Diego Soto', 'YES', 'Robin and Sarika Soto'],
+    ]
+    raptors = [
+    ['Raptors'],
+    ['Ben Finkelstein', 'NO', 'Aaron and Jill Finkelstein'],
+    ['Chloe Alaska', 'NO', 'David and Jamie Alaska'],
+    ['Arnold Willis', 'NO', 'Claire Willis'],
+    ['Philip Helm', 'YES', 'Thomas Helm and Eva Jones'],
+    ['Les Clay', 'YES', 'Wynonna Brown'],
+    ['Herschel Krustofski', 'YES', 'Hyman and Rachel Krustofski']
+    ]
+    
+    with open('teams.txt', 'w') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(sharks)
+        writer.writerows(dragons)
+        writer.writerows(raptors)
 
 if __name__ == "__main__":
     team_file()
