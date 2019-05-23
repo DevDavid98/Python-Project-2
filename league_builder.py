@@ -1,5 +1,6 @@
 import csv
 import sys
+# imported both libraries to make program run as planned
 
 
 def user_interaction():
@@ -26,6 +27,7 @@ def user_interaction():
             continue
         elif user_options.lower() == 'q':
             sys.exit("Thanks for the parcipitation!!")
+# user interface to control the whole program
 
 
 def program_start():
@@ -37,6 +39,7 @@ def program_start():
         user_start = input("Press 'S' to start!: ")
         if user_start.lower() == 's':
             user_interaction()
+# introduction to the program and starts the said program up
 
 
 def team_builder():
@@ -66,6 +69,7 @@ def team_builder():
         raptors.append(players[0:6])
         print("Team Raptors: {} \n".format(raptors))
         del players[0:6]
+# creates all three teams using list slicing and list deletions
 
 
 def soccer_experience():
@@ -93,8 +97,12 @@ def soccer_experience():
         del exp_players[1]
 
         raptors.append(exp_players[0:6])
-        print("Experience for Team Raptors: {} \n".format(raptors))
+        print("Experience for Team Raptors:{} \n"
+              .format(raptors))
+
         del exp_players[0:6]
+# litterally the same as the function 'team_builder'
+# but shows just the experience
 
 
 def parents():
@@ -131,6 +139,7 @@ def parents():
               .format(raptors_parents))
 
         del gaurdians[0:6]
+# same as the funtion 'team_builder' but to show the parents of said players
 
 
 def player_info():
@@ -138,44 +147,93 @@ def player_info():
         csv_file = csv.reader(csvfile)
         for line in csv_file:
             print(', '.join(line))
+# Gets and extracts all known data from CSV file
+# to display to the user if need be
 
 
-def team_file():
-    
-    sharks = [
-    ['Sharks'],
-    ['Joe Smith', 'YES', 'Jim and Jan Smith'],
-    ['Jill Tanner', 'YES', 'Clara Tanner'],
-    ['Bill Bon', 'YES', 'Sara and Jenny Bon'],
-    ['Eva Gordan', 'NO', 'Wendy and Mike Gordon'],
-    ['Matt Gill', 'NO', 'Charles and Sylvia Gill'],
-    ['Kimmy Stein','NO', 'Bill and Hillary Stein'],
-    ]
-    dragons = [
-    ['Dragons'],
-    ['Sammy Adams', 'NO', 'Jeff Adams'],
-    ['Karl Saygan', 'YES', 'Heather Bledsoe'],
-    ['Suzane Greenberg', 'YES', 'Henrietta Dumas'],
-    ['Sal Dali', 'NO', 'Gala Dali'],
-    ['Joe Kavalier', 'NO', 'Sam and Elaine Kavalier'],
-    ['Diego Soto', 'YES', 'Robin and Sarika Soto'],
-    ]
-    raptors = [
-    ['Raptors'],
-    ['Ben Finkelstein', 'NO', 'Aaron and Jill Finkelstein'],
-    ['Chloe Alaska', 'NO', 'David and Jamie Alaska'],
-    ['Arnold Willis', 'NO', 'Claire Willis'],
-    ['Philip Helm', 'YES', 'Thomas Helm and Eva Jones'],
-    ['Les Clay', 'YES', 'Wynonna Brown'],
-    ['Herschel Krustofski', 'YES', 'Hyman and Rachel Krustofski']
-    ]
-    
-    with open('teams.txt', 'w') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerows(sharks)
-        writer.writerows(dragons)
-        writer.writerows(raptors)
+def sharks():
+    team_name = []
+    team = 'Sharks'
+    team_name.append(team)
+
+    with open('soccer_players.csv', 'r') as csvfile:
+        data = csv.reader(csvfile)
+        next(data)
+        team = []
+
+        for line in list(data)[0:6]:
+            del line[1]
+            team.append(line)
+
+    with open('teams.txt', 'w') as txtfile:
+        txtdata = csv.writer(txtfile)
+        txtdata.writerow(team_name)
+        txtdata.writerow(team[0])
+        txtdata.writerow(team[1])
+        txtdata.writerow(team[2])
+        txtdata.writerow(team[3])
+        txtdata.writerow(team[4])
+        txtdata.writerow(team[5])
+# creates a text file called 'teams.txt'
+# to show every teams player and the team their on in a orderly fashion
+
+
+def dragons():
+    team_name = []
+    team = 'Dragons'
+    team_name.append(team)
+
+    with open('soccer_players.csv', 'r') as csvfile:
+        data = csv.reader(csvfile)
+        next(data)
+        team = []
+
+        for line in list(data)[6:13]:
+            del line[1]
+            team.append(line)
+
+        del team[5]
+    with open('teams.txt', 'a') as txtfile:
+        txtdata = csv.writer(txtfile)
+        txtdata.writerow(team_name)
+        txtdata.writerow(team[1])
+        txtdata.writerow(team[2])
+        txtdata.writerow(team[5])
+        txtdata.writerow(team[0])
+        txtdata.writerow(team[3])
+        txtdata.writerow(team[4])
+# to show every teams player and the team their on in a orderly fashion
+
+
+def raptors():
+    team_name = []
+    team = 'Raptors'
+    team_name.append(team)
+
+    with open('soccer_players.csv', 'r') as csvfile:
+        data = csv.reader(csvfile)
+        next(data)
+        team = []
+
+        for line in list(data)[11:20]:
+            del line[1]
+            team.append(line)
+
+        del team[1]
+    with open('teams.txt', 'a') as txtfile:
+        txtdata = csv.writer(txtfile)
+        txtdata.writerow(team_name)
+        txtdata.writerow(team[3])
+        txtdata.writerow(team[4])
+        txtdata.writerow(team[5])
+        txtdata.writerow(team[0])
+        txtdata.writerow(team[1])
+        txtdata.writerow(team[2])
+# to show every teams player and the team their on in a orderly fashion
+
 
 if __name__ == "__main__":
-    team_file()
+    sharks()
+    dragons()
+    raptors()
     program_start()
