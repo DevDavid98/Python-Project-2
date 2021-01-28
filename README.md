@@ -1,2 +1,2 @@
-# TechDegree-Project-2-
-coding skills
+#CSV FILE and Data manipulation
+#Further experience with intermediate python practices...
